@@ -172,7 +172,16 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      // set variable to board size - 1
+      var boardSize = this.rows().length;
+      var index = boardSize - 1;
+      // iterate starting from i = -(board size) unitl i is less than board length
+      for (var i = -index; i < boardSize; i++) {
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
