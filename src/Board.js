@@ -130,7 +130,21 @@
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      //get the number of rows in the board
+      var boardSize = this.rows().length
+      //create a conflict variable and set to false
+      var conflictFound = false;
+      //iterate over length of the board
+      for (var i = 0; i < boardSize; i++) {
+        //if hasColConflictAt returns true
+        if (this.hasColConflictAt(i)) {
+          debugger;
+          //update the conflict variable to true
+          conflictFound = true;
+          return conflictFound;
+        }
+      }
+      return conflictFound;
     },
 
 
