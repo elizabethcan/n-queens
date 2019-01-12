@@ -233,7 +233,7 @@
       var index = 2 * boardSize - 1;
       // iterate starting from i = -(board size) unitl i is less than board length
       for (var i = 0; i < index; i++) {
-        if (this.hasMajorDiagonalConflictAt(i)) {
+        if (this.hasMinorDiagonalConflictAt(i)) {
           return true;
         }
       }
