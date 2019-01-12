@@ -17,6 +17,19 @@
 
 window.findNRooksSolution = function(n) {
   var solution = undefined; //fixme
+  /*
+  want to place first rook at first possible spot (0,0)
+  we want to place second rook at first available spot.
+    if that is not a conflict
+      add rook in current spot
+    if that is a conflict 
+      place rook in next available spot
+        ...recursion
+        if that is not a conflict 
+          add rook
+        if that is a conflict
+          place rook.... 
+  */
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
