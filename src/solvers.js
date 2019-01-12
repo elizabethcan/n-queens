@@ -25,7 +25,7 @@ window.findNRooksSolution = function(n) {
   // want to place first rook at first possible spot (0,0)
   //togglePiece: function(rowIndex, colIndex)
   var solutionRows = solution.rows();
-  solution.togglePiece(0, 0);
+  // solution.togglePiece(0, 0);
   for (var i = 0; i < solutionRows.length; i++) { // iterates over entire board i is currently equal to an entire row
   // we want to place second rook at first available spot.
     // we need to iterate over each element in an entire row
@@ -34,7 +34,7 @@ window.findNRooksSolution = function(n) {
       if (solutionRows[i][j] === 0) {
         solution.togglePiece(i, j);
         //if there is a conflict
-        if (solution.hasAnyRowConflicts() || solution.hasAnyColConflicts()) {
+        if (solution.hasAnyRooksConflicts()) {
           //toggle back to 0 
           solution.togglePiece(i, j);
         }
@@ -58,8 +58,15 @@ window.findNRooksSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = undefined; //fixme
-
+  var solutionCount = 0; 
+  //check starting point between 0 & n
+  //keep a count of solutions
+  //iterate through starting point on first row
+    //start by placing a rook in the first place in the first row
+    //place second rook in the next possible place
+      //place third rook in next possible place
+      //if this creates a possible solution
+        //increment solution count
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
 };
