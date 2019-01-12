@@ -114,7 +114,18 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      var rows = this.rows();
+      var column = [];
+      var countsObj = {'0': 0, '1': 0};
+      for (var i = 0; i < rows.length; i++) {
+        column.push(rows[i][colIndex]);
+      }
+      for (var j = 0; j < column.length; j++) {
+        countsObj[column[j]] += 1;
+      }
+      if (countsObj['1'] > 1) {
+        return true;
+      } else return false;
     },
 
     // test if any columns on this board contain conflicts
