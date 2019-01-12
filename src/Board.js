@@ -142,7 +142,30 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      // create variable to store count of 1s
+      var board = this.rows();
+      var count = 0;
+      // create an incrementer variable pointing to input
+      var increment = majorDiagonalColumnIndexAtFirstRow;
+      // iterate over board array
+      for (var i = 0; i < board.length; i++) {
+        // check if element equals one
+        if (board[i][increment] === 1) {
+          // add one to count
+          count += 1;
+        }
+        // add one to incrementer
+        increment++;
+      }
+      // if count > 1
+      if (count > 1) {
+        // return true
+        return true;
+      } else {
+      // else
+        // return false
+        return false;
+      }
     },
 
     // test if any major diagonals on this board contain conflicts
