@@ -94,13 +94,9 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      var rows = this.rows();
-      for (var i = 0; i < rows.length; i++) {
-        var countsObj = {'0': 0, '1': 0};
-        for (var j = 0; j < rows[i].length; j++) {
-          countsObj[rows[i][j]] += 1;
-        }
-        if (countsObj['1'] > 1) {
+      var boardSize = this.rows().length
+      for (var i = 0; i < boardSize; i++) {
+        if (this.hasRowConflictAt(i)) {
           return true;
         }
       }
@@ -130,21 +126,13 @@
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      //get the number of rows in the board
-      var boardSize = this.rows().length
-      //create a conflict variable and set to false
-      var conflictFound = false;
-      //iterate over length of the board
+      var boardSize = this.rows().length;
       for (var i = 0; i < boardSize; i++) {
-        //if hasColConflictAt returns true
         if (this.hasColConflictAt(i)) {
-          debugger;
-          //update the conflict variable to true
-          conflictFound = true;
-          return conflictFound;
+          return true;
         }
       }
-      return conflictFound;
+      return false;
     },
 
 
