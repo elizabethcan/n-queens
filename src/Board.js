@@ -145,25 +145,27 @@
       // create variable to store count of 1s
       var board = this.rows();
       var count = 0;
-      // create an incrementer variable pointing to input
-      var increment = majorDiagonalColumnIndexAtFirstRow;
-      // iterate over board array
-      for (var i = 0; i < board.length; i++) {
-        // check if element equals one
-        if (board[i][increment] === 1) {
-          // add one to count
-          count += 1;
+      if (majorDiagonalColumnIndexAtFirstRow >= 0) {
+        var increment = majorDiagonalColumnIndexAtFirstRow;
+        for (var i = 0; i < board.length; i++) {
+          if (board[i][increment] === 1) {
+            count += 1;
+          }
+          increment++;
         }
-        // add one to incrementer
-        increment++;
+      } else {
+        var increment = 0;
+        var index = Math.abs(majorDiagonalColumnIndexAtFirstRow);
+        for (var i = index; i < board.length; i++) {
+          if (board[i][increment] === 1) {
+            count += 1;
+          }
+          increment++;
+        }
       }
-      // if count > 1
       if (count > 1) {
-        // return true
         return true;
       } else {
-      // else
-        // return false
         return false;
       }
     },
