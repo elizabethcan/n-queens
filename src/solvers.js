@@ -50,29 +50,48 @@ window.findNRooksSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = 0; 
-  for (var i = 0; i < n; i++) {
-    var board = new Board({'n': n});
-    var boardRows = board.rows();
-    board.togglePiece(0, i);
-    for (var j = 0; j < boardRows.length; j++) {
-      for (var k = 0; k < boardRows[j].length; k++) {
-        if (boardRows[j][k] === 0) {
-          board.togglePiece(j, k);
-          if (board.hasAnyRooksConflicts()) {
-            board.togglePiece(j, k);
-          }
-        }
+  // var solutionCount = 0; 
+  // for (var i = 0; i < n; i++) {
+  //   var board = new Board({'n': n});
+  //   var boardRows = board.rows();
+  //   board.togglePiece(0, i);
+  //   for (var j = 0; j < n; j++) {
+  //     for (var k = 0; k < n; k++) {
+  //       if (boardRows[j][k] === 0) {
+  //         board.togglePiece(j, k);
+  //         if (board.hasAnyRooksConflicts()) {
+  //           board.togglePiece(j, k);
+  //         }
+  //       }
+  //     }
+  //   }
+  //   solutionCount += 1;
+  // }
+  
+  var solutionCount = 0;
+  var board = new Board({n: n});
+  var boardRows = board.rows();
+  var rookCount = 0;
+  
+  var rookPlacerHelper = function(rookCount, column) {
+    board.togglePiece(rookCount, column);
+    if (board.hasAnyRooksConflicts()) {
+      board.togglePiece(rookCount, column);
+      rookPlacerHelper(rookCount, column + 1);
+    } else {
+      if (rookCount === 3) {
+        solutionCount += 1;
+      } else {
+        rookCount += 1;
+        rookPlacerHelper(rookCount, column);
       }
-    }
-    solutionCount += 1;
+    } 
+  };
+  
+  for (var i = 0; i < n; i++) {
+    rookPlacerHelper(rookCount, i);
   }
-  //iterate through starting point on first row
-    //start by placing a rook in the first place in the first row
-    //place second rook in the next possible place
-      //place third rook in next possible place
-      //if this creates a possible solution
-        //increment solution count
+  
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
 };
